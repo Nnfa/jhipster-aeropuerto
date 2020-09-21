@@ -1,0 +1,55 @@
+
+entity Avion {
+	idavion Int
+}
+
+// an ignored comment
+/** not an ignored comment */
+entity Programas {
+	idProgramas Int,
+	detalle String,
+}
+
+entity Vuelo{
+	idvuelo Int required
+}
+
+entity Operaciones {
+	/**
+	* The firstname attribute.
+	*/
+	aterrizar String,
+	despegar String,
+}
+
+entity Escalas {
+	idescalas Int,
+	detalla String,
+
+}
+
+entity Aeropuerto {
+	idAeropuerto Int,
+	nombre String,
+	ciudad String
+}
+
+relationship OneToMany {
+	Avion{vuelo} to Vuelo
+}
+relationship OneToMany {
+	Operaciones{avion} to Avion
+}
+
+relationship OneToOne {
+	Vuelo{escala} to Escalas
+}
+
+relationship OneToMany {
+	Aeropuerto{programas} to Programas
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Operaciones to Aeropuerto{operaciones},
+}
